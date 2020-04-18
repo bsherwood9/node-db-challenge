@@ -13,12 +13,12 @@ function findTasksById(id) {
     .where({ project_id: id });
 }
 
-function findTasksByIdContext(id) {
+function findTasksByIdContext(task_id) {
   return db("tasks_contexts as tc")
     .join("tasks as t", "t.id", "tc.task_id")
     .join("contexts as c", "c.id", "tc.context_id")
-    .select("t.task_description", "t.notes", "t.completed", "c.title")
-    .where({ id });
+    .select("t.task_description", "t.notes", "c.title")
+    .where({ task_id });
 }
 
 function findAllTasks() {
